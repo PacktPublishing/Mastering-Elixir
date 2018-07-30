@@ -1,0 +1,39 @@
+x = 3
+x * 3
+3 = x
+2 = x
+{number, representation} = {3.1415, "π"}
+number
+representation
+a = 1
+a = 7
+{a, a} = {3, 3}
+{a, a} = {2, 3}
+{3.1415, representation} = {3.1415, "π"}
+representation
+[first, second, third] = ["α", "β", "γ"]
+first
+second
+third
+[first, _, third] = ["δ", "ε", "ζ"]
+first
+third
+_
+[first | rest_of_list] = ["α", "β", "γ"]
+first
+rest_of_list
+%{"name" => name, "age" => age} = %{"name" => "Gabriel", "age" => 1}
+name
+age
+name = "Gabriel"
+%{name: ^name, age: age} = %{name: "Gabriel", age: 1}
+%{name: ^name, age: age} = %{name: "Jose", age: 1}
+<<first_byte, second_byte>> = <<100, 200>>
+first_byte
+second_byte
+<<first_byte, second_byte>> = "YZ"
+first_byte
+second_byte
+x = y = 100
+x
+y

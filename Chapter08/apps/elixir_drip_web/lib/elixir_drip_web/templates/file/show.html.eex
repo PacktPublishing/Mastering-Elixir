@@ -1,0 +1,15 @@
+<div>
+  <table class="table table-striped">
+    <%= render("file.html", conn: @conn, file: @file) %>
+    <tr>
+      <td> Full path: </td>
+      <td colspan="3"><%= @file.full_path %></td>
+    </tr>
+    <tr>
+      <td> Uploaded at: </td>
+      <td colspan="3"><%= @file.uploaded_at %></td>
+    </tr>
+  </table>
+  <%= link("Back to folder", to: file_path(@conn, :index, "path": @file.full_path), class: "btn btn-default") %>
+  <button id="share_file_btn" class="btn btn-primary">Share File</button>
+</div>

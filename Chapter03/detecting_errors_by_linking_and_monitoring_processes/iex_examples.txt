@@ -1,0 +1,14 @@
+cache_worker_pid = CacheWorker.init("some binary content")
+CacheWorker.get_content(cache_worker_pid)
+cache_worker_pid = CacheWorker.init("some other binary content")
+CacheWorker.get_content(cache_worker_pid)
+Process.exit(cache_worker_pid, :kill)
+Process.flag(:trap_exit, true)
+cache_worker_pid = CacheWorker.init("some binary content")
+CacheWorker.get_content(cache_worker_pid)
+Process.exit(cache_worker_pid, :kill)
+flush
+cache_worker_pid = CacheWorker.init("some binary content")
+CacheWorker.get_content(cache_worker_pid)
+monitor_reference = Process.monitor(cache_worker_pid)
+flush

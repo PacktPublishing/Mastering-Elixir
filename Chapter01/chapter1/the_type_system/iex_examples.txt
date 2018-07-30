@@ -1,0 +1,95 @@
+# Integers
+25 + 8
+1_000_000 - 500_000
+0b10001
+0o21
+0x11
+
+# Floats
+0.1 * 0.5
+0.1e3
+4/2
+
+# Atoms
+:ok
+:error
+:some_descriptive_name!
+:value@start
+:"Atom name with arbitrary characters#$%^"
+
+# Booleans
+true == :true
+false == :false
+nil == :nil
+true or false
+true and false
+not false
+"a value" || false
+"a value" && false
+nil && "a value"
+!"a value"
+1 == 1.0
+1 === 1.0
+
+# Tuples
+{:ok, 3.14}
+result = {:ok, 3.14}
+elem(result, 1)
+put_elem(result, 1, 1.61)
+result
+
+# Lists
+[1, :an_atom, 0.5]
+[0, 1, 1] ++ [2, 3, 5]
+[0, 1, 1] -- [1, 2, 3]
+1 in [0, 1, 1, 2, 3, 5]
+99 in [0, 1, 1, 2, 3, 5]
+hd([0, 1, 1, 2, 3, 5])
+tl([0, 1, 1, 2, 3, 5])
+
+# Maps
+%{:name => "Gabriel", :age => 1}
+%{name: "Gabriel", age: 1}
+map = %{name: "Gabriel", age: 1}
+map[:name]
+map.name
+%{map | age: 2}
+Map.put(map, :gender, "Male")
+
+# Binaries
+<<5, 10>>
+<<5, 256>>
+<<5, 256::16>>
+
+# Strings and Charlists
+"hey, a string"
+'hey, a charlist'
+hd('hey, a charlist')
+"two plus two is: #{2+2}"
+'four minus one is: #{4-1}'
+"""
+a string with heredoc notation
+"""
+'''
+a charlist with heredoc notation
+'''
+~s(a string created by a sigil)
+~c(a charlist created by a sigil)
+Regex.run(~r{str}, "a string")
+Regex.run(~r{123}, "a string")
+String.to_charlist("converting to charlist")
+List.to_string('converting to string')
+
+# Other types
+keyword_list = [name: "Gabriel", age: 1]
+keyword_list[:name]
+
+17..21
+19 in 17..21
+
+set = MapSet.new
+set = MapSet.put(set, 1)
+set = MapSet.put(set, 2)
+set = MapSet.put(set, 1)
+
+i("a string")

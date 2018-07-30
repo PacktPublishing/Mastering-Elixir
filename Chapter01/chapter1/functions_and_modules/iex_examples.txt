@@ -1,0 +1,22 @@
+plus_one = fn (x) -> x + 1 end
+plus_one.(10)
+division = fn
+  (_dividend, 0) -> :infinity
+  (dividend, divisor) -> dividend / divisor
+end
+division.(10, 2)
+division.(10, 0)
+x = 3
+some_fun = fn -> "variable x is #{x}" end
+some_fun.()
+x = 5
+some_fun.()
+plus_one = &(&1 + 1)
+plus_one.(10)
+defmodule StringHelper do
+  def palindrome?(term) do
+    String.reverse(term) == term
+  end
+end
+StringHelper.palindrome?("abcd")
+StringHelper.palindrome?("abba")

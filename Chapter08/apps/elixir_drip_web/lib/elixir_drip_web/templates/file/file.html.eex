@@ -1,0 +1,8 @@
+<tr>
+  <td><img src="<%= static_path(@conn, "/images/file.svg") %>"></td>
+  <td><%= link(@file.name, to: file_path(@conn, :show, @file.id)) %></td>
+  <td><%= @file.size %> bytes</td>
+  <td>
+    <%= button("Download File", to: file_path(@conn, :show, @file.id) <> "/download", class: "btn btn-primary") %>
+  </td>
+</tr>

@@ -1,0 +1,16 @@
+<h1>Upload a File</h1>
+<%= form_for @changeset, file_path(@conn, :create), [multipart: true, as: :file], fn f -> %>
+  <div class=​"form-group"​>
+    <%= text_input f, :file_name, placeholder: "File Name", class: "form-control" %>
+    <%= error_tag f, :file_name %>
+  </div>
+  <div class=​"form-group"​>
+    <%= text_input f, :full_path, value: @path, placeholder: "Full Path", class: "form-control" %>
+    <%= error_tag f, :full_path %>
+  </div>
+  <div class="form-group">
+    <label>File</label>
+    <%= file_input f, :file, class: "form-control" %>
+  </div>
+  <%= submit("Upload", class: "btn btn-primary") %>
+<% end %>

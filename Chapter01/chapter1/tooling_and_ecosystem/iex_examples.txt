@@ -1,0 +1,11 @@
+h Enum
+h Enum.map/2
+break! StringHelper.palindrome?/1
+StringHelper.palindrome?("abba")
+7 * 3
+a = v
+a * 2
+v(-3)
+:math.log(10)
+port = Port.open({:spawn, "whoami"}, [:binary])
+flush()

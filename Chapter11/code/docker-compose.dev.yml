@@ -1,0 +1,48 @@
+version: '2.3'
+services:
+  prometheus:
+    build:
+      context: .
+      dockerfile: monitoring/Dockerfile.prometheus
+    depends_on:
+      app:
+        condition: service_started
+    ports:
+      - 9090:9090
+  app:
+    image: elixir_drip:dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    env_file: ./env/dev.env
+    environment:
+      SECRET_KEY_BASE:
+      GOOGLE_STORAGE_CREDENTIALS:
+    ports:
+      - 4000:4000
+      - 4369
+      - 9001-9004
+    command: sh /opt/app/elixir_drip/script/start.sh
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - default
+    volumes:
+      - .:/opt/app/elixir_drip
+  postgres:
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "123456"
+      PSQL_TRUST_LOCALNET: 'true'
+      ENCODING: UTF8
+    image: postgres:9.6
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "postgres", "-U", "postgres"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    ports:
+      - 5000:5432
+    networks:
+      - default

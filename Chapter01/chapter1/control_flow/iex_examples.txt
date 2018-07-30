@@ -1,0 +1,52 @@
+x = 5
+cond do
+  x * x == 9 -> "x was 3"
+  x * x == 16 -> "x was 4"
+  x * x == 25 -> "x was 5"
+  true -> "none of the above matched"
+end
+case Enum.random(1..10) do
+  2 -> "The lucky ball was 2"
+  7 -> "The lucky ball was 7"
+  _ -> "The lucky ball was not 2 nor 7"
+end
+options = [x: [y: [z: "the value we're after!"]]]
+case Keyword.fetch(options, :x) do
+  {:ok, value} -> case Keyword.fetch(value, :y) do
+    {:ok, inner_value} -> case Keyword.fetch(inner_value, :z) do
+      {:ok, inner_inner_value} -> inner_inner_value
+      _ -> "non-existing key"
+    end
+    _ -> "non-existing key"
+  end
+  _ -> "non-existing key"
+end
+with {:ok, value} <- Keyword.fetch(options, :x),
+     {:ok, inner_value} <- Keyword.fetch(value, :y),
+     {:ok, inner_inner_value} <- Keyword.fetch(inner_value, :z),
+     do: inner_inner_value
+with {:ok, value} <- Keyword.fetch(options, :missing_key),
+     {:ok, inner_value} <- Keyword.fetch(value, :y),
+     {:ok, inner_inner_value} <- Keyword.fetch(inner_value, :z),
+     do: inner_inner_value
+with {:ok, value} <- Keyword.fetch(options, :missing_key),
+     {:ok, inner_value} <- Keyword.fetch(value, :y),
+     {:ok, inner_inner_value} <- Keyword.fetch(inner_value, :z) do
+  inner_inner_value
+else
+  :error -> "non-existing key"
+  _ -> "some other error"
+end
+raise "Something very strange occurred"
+raise ArithmeticError, message: "Some weird math going on here"
+try do
+  5 / 0
+rescue
+  e in ArithmeticError -> "Tried to divide by 0."
+  _ -> "None of the above matched"
+end
+try do
+  5 / 0
+rescue
+  ArgumentError -> "ArgumentError was raised."
+end

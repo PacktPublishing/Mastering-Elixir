@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: prometheus
+  name: elixir-drip-monitor
+  namespace: monitoring
+spec:
+  jobLabel: elixir-drip
+  endpoints:
+  - interval: 30s
+    port: web
+  namespaceSelector:
+    matchNames:
+    - production
+  selector:
+    matchLabels:
+      app: elixir-drip
